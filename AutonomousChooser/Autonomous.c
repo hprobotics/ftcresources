@@ -1,5 +1,6 @@
 #include "JoystickDriver.c"  //Include file to "handle" the Bluetooth messages.
 #include "menu_helper.h"
+#include "menu_config.h"
 
 void initializeRobot()
 {
