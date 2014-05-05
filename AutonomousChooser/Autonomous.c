@@ -10,6 +10,7 @@ void initializeRobot()
 task main()
 {
 	initializeRobot();
+	setupMenu();
 
 	bDisplayDiagnostics = false;
 	StartTask(runMenu);
