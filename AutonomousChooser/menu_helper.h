@@ -24,25 +24,39 @@ task runMenu()
 {
 	menuParameter* currVar;
 	int idx = 0;
+	int startVal;
 
 	currVar = &menu[0];
 
+	eraseDisplay();
+
 	while(true){
-		for(int i=0;i<menuLength;i++){
+		int oldStartVal = startVal;
+		startVal=floor(idx/4.0)*4;
+		if(startVal!=oldStartVal){
+			eraseDisplay();
+		}
+	int endVal=(menuLength-floor(idx/4.0)*4>4)?4:menuLength-floor(idx/4.0)*4;
+		for(int i=startVal;i<endVal+startVal;i++){
+			int linenum=i-startVal;
 			if(menu[i].type=='b'){
-				nxtDisplayString(i,"%s",menu[i].name);
+				nxtDisplayString(linenum,"%s",menu[i].name);
 				bool set =((bool)(*(menu[i].var)));
-				string disp = set?(string)(menu[i].trueDisp):(string)(menu[i].falseDisp);
-				nxtDisplayStringAt(60,63-i*8,"%s",disp);
+			string disp = set?(string)(menu[i].trueDisp):(string)(menu[i].falseDisp);
+				nxtDisplayStringAt(60,63-linenum*8,"%s",disp);
 				} else if(menu[i].type=='i'){
-				nxtDisplayString(i,menu[i].name);
-				nxtDisplayStringAt(80,63-i*8,"%2i",*(menu[i].var));
+				nxtDisplayString(linenum,menu[i].name);
+				nxtDisplayStringAt(80,63-linenum*8,"%2i",*(menu[i].var));
 			}
 			if(currVar->var==menu[i].var){
-				nxtDisplayStringAt(94,63-i*8,"*");
+				nxtDisplayStringAt(94,63-linenum*8,"*");
 				} else {
-				nxtDisplayStringAt(94,63-i*8," ");
+				nxtDisplayStringAt(94,63-linenum*8," ");
 			}
+		}
+
+		if(floor((menuLength-1)/4.0)>0){
+			nxtDisplayStringAt(0, 29, "Page %i/%i", floor(idx/4.0)+1, floor((menuLength-1)/4.0)+1);
 		}
 
 		if(nNxtButtonPressed==NEXT_BTN||nNxtButtonPressed==PREV_BTN){
