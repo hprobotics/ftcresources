@@ -1,7 +1,7 @@
 bool right=false;//default values
 bool inner=false;
 int closeGoal=4;
-int delay=0;
+int delayTime=0;
 int test=0;
 
 void setupMenu(){
@@ -31,7 +31,7 @@ void setupMenu(){
 
 	//set up delay
 	parameters[3].name="Delay: ";
-	parameters[3].var=&delay;
+	parameters[3].var=&delayTime;
 	parameters[3].type='i';
 	parameters[3].min=0;
 	parameters[3].max=15;

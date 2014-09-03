@@ -13,15 +13,15 @@ task main()
 	setupMenu();
 
 	bDisplayDiagnostics = false;
-	StartTask(runMenu);
+	startTask(runMenu);
 
 	waitForStart(); // Wait for the beginning of autonomous phase.
 
-	StopTask(runMenu);
+	stopTask(runMenu);
 	eraseDisplay();
 	bDisplayDiagnostics = true;
 
-	wait1Msec(delay*1000);
+	wait1Msec(delayTime*1000);
 
 	//Use the variables to run your auto here
 }
