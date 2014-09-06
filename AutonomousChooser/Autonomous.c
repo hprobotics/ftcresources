@@ -13,11 +13,11 @@ task main()
 	setupMenu();
 
 	bDisplayDiagnostics = false;
-	startTask(runMenu);
+	StartTask(runMenu);
 
 	waitForStart(); // Wait for the beginning of autonomous phase.
 
-	stopTask(runMenu);
+	StopTask(runMenu);
 	eraseDisplay();
 	bDisplayDiagnostics = true;
 
