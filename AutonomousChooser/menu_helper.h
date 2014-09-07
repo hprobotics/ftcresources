@@ -40,23 +40,23 @@ task runMenu()
 		for(int i=startVal;i<endVal+startVal;i++){
 			int linenum=i-startVal;
 			if(menu[i].type=='b'){
-				nxtDisplayString(linenum,"%s",menu[i].name);
+				displayString(linenum,"%s",menu[i].name);
 				bool set =((bool)(*(menu[i].var)));
 			string disp = set?(string)(menu[i].trueDisp):(string)(menu[i].falseDisp);
-				nxtDisplayStringAt(60,63-linenum*8,"%s",disp);
+				displayStringAt(60,63-linenum*8,"%s",disp);
 				} else if(menu[i].type=='i'){
-				nxtDisplayString(linenum,menu[i].name);
-				nxtDisplayStringAt(80,63-linenum*8,"%2i",*(menu[i].var));
+				displayString(linenum,menu[i].name);
+				displayStringAt(80,63-linenum*8,"%2i",*(menu[i].var));
 			}
 			if(currVar->var==menu[i].var){
-				nxtDisplayStringAt(94,63-linenum*8,"*");
+				displayStringAt(94,63-linenum*8,"*");
 				} else {
-				nxtDisplayStringAt(94,63-linenum*8," ");
+				displayStringAt(94,63-linenum*8," ");
 			}
 		}
 
 		if(floor((menuLength-1)/4.0)>0){
-			nxtDisplayStringAt(0, 29, "Page %i/%i", floor(idx/4.0)+1, floor((menuLength-1)/4.0)+1);
+			displayStringAt(0, 29, "Page %i/%i", floor(idx/4.0)+1, floor((menuLength-1)/4.0)+1);
 		}
 
 		if(nNxtButtonPressed==NEXT_BTN||nNxtButtonPressed==PREV_BTN){
@@ -65,8 +65,8 @@ task runMenu()
 				} else if (currVar->type=='i') {
 				switchInt(currVar->var,nNxtButtonPressed,currVar->min,currVar->max);
 			}
-			ClearTimer(T1);
-			while(nNxtButtonPressed!=kNoButton&&time1[T1]<=400);
+			clearTimer(T1);
+			while(nNxtButtonPressed!=kNoButton&&time1[T1]<=400){}
 		}
 
 		if(nNxtButtonPressed==CAT_BTN){
@@ -75,17 +75,17 @@ task runMenu()
 				idx = 0;
 			}
 			currVar = &menu[idx];
-			ClearTimer(T1);
-			while(nNxtButtonPressed!=kNoButton&&time1[T1]<=400);
+			clearTimer(T1);
+			while(nNxtButtonPressed!=kNoButton&&time1[T1]<=400){}
 		}
 
 		//this section is copied from JoystickDriver.c with changed line numbers
 		if ( externalBatteryAvg < 0){
-			nxtDisplayTextLine(6, "Ext Batt: OFF");       //External battery is off or not connected
+			displayTextLine(6, "Ext Batt: OFF");       //External battery is off or not connected
 			} else {
-			nxtDisplayTextLine(6, "Ext Batt:%4.1f V", externalBatteryAvg / (float) 1000);
+			displayTextLine(6, "Ext Batt:%4.1f V", externalBatteryAvg / (float) 1000);
 		}
-		nxtDisplayTextLine(7, "NXT Batt:%4.1f V", nAvgBatteryLevel / (float) 1000);   // Display NXT Battery Voltage
+		displayTextLine(7, "NXT Batt:%4.1f V", nAvgBatteryLevel / (float) 1000);   // Display NXT Battery Voltage
 	}
 }
 
